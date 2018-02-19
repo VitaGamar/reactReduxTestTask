@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, NavLink } from 'react-router-dom'
 import BookshelvesPage from './../bookshelvesPage'
 import BooksPage from './../booksPage'
+import './../../styles/app.css'
 
 const App = () => (
   <div>

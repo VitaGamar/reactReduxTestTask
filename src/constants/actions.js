@@ -23,8 +23,8 @@ export const DELETE_BOOK = createCRUDEvent(ENTITY_NAME.BOOK, HTTP_METHOD.DELETE)
 
 
 export const GET_BOOK_SHELVES = createCRUDEvent(ENTITY_NAME.BOOK_SHELVES, HTTP_METHOD.GET);
-export const CREATE_BOOK_SHELVES = createCRUDEvent(ENTITY_NAME.BOOK_SHELVES, HTTP_METHOD.POST);
-export const UPDATE_BOOK_SHELVES = createCRUDEvent(ENTITY_NAME.BOOK_SHELVES, HTTP_METHOD.PUT);
-export const DELETE_BOOK_SHELVES = createCRUDEvent(ENTITY_NAME.BOOK_SHELVES, HTTP_METHOD.DELETE);
+export const CREATE_BOOK_SHELF = createCRUDEvent(ENTITY_NAME.BOOK_SHELVES, HTTP_METHOD.POST);
+export const UPDATE_BOOK_SHELF = createCRUDEvent(ENTITY_NAME.BOOK_SHELVES, HTTP_METHOD.PUT);
+export const DELETE_BOOK_SHELF = createCRUDEvent(ENTITY_NAME.BOOK_SHELVES, HTTP_METHOD.DELETE);
 
-export const httpActionsCreator = (type, status) => `${type}_${status}`;
+export const httpActionsCreator = (type) => (status) => `${type}_${status}`;

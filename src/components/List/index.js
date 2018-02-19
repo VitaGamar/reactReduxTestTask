@@ -1,9 +1,13 @@
 import React from 'react'
-import { ListGroup, ListGroupItem, ButtonGroup, Button } from 'react-bootstrap'
+import { ListGroup, ListGroupItem, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import './../../styles/list.css';
 
-const List = ({ items, entityName, linkTo }) => {
+const List = ({ items, entityName, linkTo, deleteAction }) => {
+    function deleteItem(id) {
+        deleteAction(id);
+    }
+
     return (
         <ListGroup>
             {items.map((item) => {
@@ -13,7 +17,7 @@ const List = ({ items, entityName, linkTo }) => {
                         <div className="buttonGroup">
                             <Link className="btn btn-primary" to={`/${entityName}/view/${item.id}`} >View</Link>
                             <Link className="btn btn-primary" to={`/${entityName}/edit/${item.id}`} >Edit</Link>
-                            <Link className="btn btn-danger" to={`/${entityName}/delete/${item.id}`} >Delete</Link>
+                            <Button className="btn-danger" onClick={deleteItem.bind(item.id)} >Delete</Button>
                         </div>
                     </ListGroupItem>
                 );

@@ -5,6 +5,7 @@ import {getBookshelvesById} from "../../modules/selectors/bookshelves";
 import { FormGroup, Form, ControlLabel, FormControl, ButtonToolbar } from 'react-bootstrap'
 import {BOOK_SHELVES} from "../../constants/entityNames";
 import {EDIT} from '../../constants/routes';
+import PropTypes from "prop-types";
 
 export class BookshelfViewForm extends Component {
     constructor(props) {
@@ -30,6 +31,14 @@ export class BookshelfViewForm extends Component {
         );
     }
 }
+
+BookshelfViewForm.PropTypes = {
+    bookshelf: PropTypes.object.isRequired
+};
+
+BookshelfViewForm.defaultProps = {
+    bookshelf: {}
+};
 
 function mapStateToProps(state, ownProps) {
     return {
