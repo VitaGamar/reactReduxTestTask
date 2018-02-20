@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import List from '../../components/List'
 import { Button } from 'react-bootstrap';
 import {connect} from "react-redux";
-import './../../styles/list.css';
 import {getBookshelvesList} from "../../modules/selectors/bookshelves";
 import * as bookshelvesActions from "../../modules/actions/bookshelves";
 import {bindActionCreators} from "redux";
@@ -21,10 +20,12 @@ export class BookshelvesList extends Component {
 
     render() {
         const {bookshelves} = this.props;
-        return [
-            <List items={bookshelves} entityName={BOOK_SHELVES} linkTo={BOOK} deleteAction={this.deleteItem}/>,
-            <Button className='btn-primary'>New Bookshelf</Button>
-        ];
+        return (
+            <div>
+                <List items={bookshelves} entityName={BOOK_SHELVES} linkTo={BOOK} deleteAction={this.deleteItem}/>,
+                <Button className='btn-primary'>New Bookshelf</Button>
+            </div>
+        );
     }
 };
 

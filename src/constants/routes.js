@@ -1,3 +1,3 @@
-export const EDIT = "EDIT";
-export const VIEW = "VIEW";
-export const DELETE = "DELETE";
+export const EDIT = "edit";
+export const VIEW = "view";
+export const DELETE = "delete";

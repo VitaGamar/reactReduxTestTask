@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Link, withRouter} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
-import {getBookshelvesById} from "../../modules/selectors/bookshelves";
+import {getBookshelfById} from "../../modules/selectors/bookshelves";
 import { Form, Button, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
 import {BOOK_SHELVES} from "../../constants/entityNames";
 import {VIEW} from '../../constants/routes';
@@ -26,7 +26,7 @@ export class BookshelfEditForm extends Component {
     onSubmit=(event) => {
         event.preventDefault();
         const id = this.props.bookshelf.id;
-        this.props.actions.updateBookshelves(id, { title: this.state.title });
+        this.props.actions.updateBookshelf(id, { ...this.props.bookshelf, title: this.state.title });
         console.log("submit");
     };
 
@@ -55,7 +55,7 @@ export class BookshelfEditForm extends Component {
     }
 }
 
-BookshelfEditForm.PropTypes = {
+BookshelfEditForm.propTypes = {
   bookshelf: PropTypes.object.isRequired
 };
 
@@ -65,7 +65,7 @@ BookshelfEditForm.defaultProps = {
 
 function mapStateToProps(state, ownProps) {
     return {
-        bookshelf: getBookshelvesById(state, ownProps.match.params.id)
+        bookshelf: getBookshelfById(state, ownProps.match.params.id)
     };
 }
 

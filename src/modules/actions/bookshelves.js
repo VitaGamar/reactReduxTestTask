@@ -1,82 +1,37 @@
 import * as ActionTypes from '../../constants/actions'
 import {BOOK_SHELVES} from "../../constants/entityNames";
-import api from './../../api'
+import api from './../../api';
+import {makeRequest} from "./common";
 
 export const loadBookshelves = () => {
-    return function(dispatch){
-        const actionMaker = ActionTypes.httpActionsCreator(ActionTypes.GET_BOOK_SHELVES);
-        dispatch({type: actionMaker(ActionTypes.HTTP_STATUS.REQUEST)});
-        return api.getAll(BOOK_SHELVES).then(response => {
-            dispatch({
-                type: actionMaker(ActionTypes.HTTP_STATUS.SUCCESS),
-                payload: response.data});
-        }, error => {
-            dispatch({
-                type: actionMaker(ActionTypes.HTTP_STATUS.SUCCESS),
-                payload: error});
-        });
-    }
+    return makeRequest.bind(
+        null,
+        ActionTypes.GET_BOOK_SHELVES,
+        api.getAll.bind(null, BOOK_SHELVES)
+    );
 };
 
 export const updateBookshelf = (id, data) => {
-    return function(dispatch){
-        const actionMaker = ActionTypes.httpActionsCreator(ActionTypes.UPDATE_BOOK_SHELF);
-
-        dispatch({type: actionMaker(ActionTypes.HTTP_STATUS.REQUEST)});
-
-        return api.updatePUT(BOOK_SHELVES, id, data)
-            .then(
-                response => {
-                    dispatch({
-                        type: actionMaker(ActionTypes.HTTP_STATUS.SUCCESS),
-                        payload: response.data});
-                }, error => {
-                    dispatch({
-                        type: actionMaker(ActionTypes.HTTP_STATUS.FAILURE),
-                        payload: error});
-                }
-            );
-    }
+    return makeRequest.bind(
+        null,
+        ActionTypes.UPDATE_BOOK_SHELF,
+        api.updatePUT.bind(null, BOOK_SHELVES, id, data)
+    );
 };
 
-export const createBookshelf = (id, data) => {
-    return function(dispatch){
-        const actionMaker = ActionTypes.httpActionsCreator(ActionTypes.CREATE_BOOK_SHELF);
 
-        dispatch({type: actionMaker(ActionTypes.HTTP_STATUS.REQUEST)});
-
-        return api.create(BOOK_SHELVES, data)
-            .then(
-                response => {
-                    dispatch({
-                        type: actionMaker(ActionTypes.HTTP_STATUS.SUCCESS),
-                        payload: response.data});
-                }, error => {
-                    dispatch({
-                        type: actionMaker(ActionTypes.HTTP_STATUS.FAILURE),
-                        payload: error});
-                }
-            );
-    }
+export const createBookshelf = (data) => {
+    return makeRequest.bind(
+        null,
+        ActionTypes.CREATE_BOOK_SHELF,
+        api.create.bind(null, BOOK_SHELVES, data)
+    );
 };
 
 export const deleteBookshelf = (id) => {
-    return function(dispatch){
-        const actionMaker = ActionTypes.httpActionsCreator(ActionTypes.DELETE_BOOK_SHELF);
-
-        dispatch({type: actionMaker(ActionTypes.HTTP_STATUS.REQUEST)});
-
-        return api.deleteById(BOOK_SHELVES, id)
-            .then(
-                response => {
-                    dispatch({
-                        type: actionMaker(ActionTypes.HTTP_STATUS.SUCCESS),
-                        payload: response.data});
-                }, error => {
-                    dispatch({
-                        type: actionMaker(ActionTypes.HTTP_STATUS.FAILURE),
-                        payload: error});
-                }
-            );
-    }
+    return makeRequest.bind(
+        null,
+        ActionTypes.DELETE_BOOK_SHELF,
+        api.deleteById.bind(null, BOOK_SHELVES, id)
+    );
 };

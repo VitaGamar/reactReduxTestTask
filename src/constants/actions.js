@@ -1,5 +1,10 @@
 import * as ENTITY_NAME from './entityNames'
 
+export const RESPONSE_STATUS = {
+    SUCCESS: 1,
+    FAILURE: 0
+};
+
 const HTTP_METHOD = {
     GET: 'GET',
     PUT: 'PUT',

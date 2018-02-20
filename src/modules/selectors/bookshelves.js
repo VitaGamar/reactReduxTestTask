@@ -1,10 +1,11 @@
-import { createSelector } from 'reselect'
+import { createSelector } from 'reselect';
 
 const getEntities = (state) => state.entities;
 
 export const getBookshelves = createSelector( getEntities, entities => entities.bookshelves );
 
-export const getBookshelvesById = (state, id) => getBookshelves(state).data[id];
+export const getBookshelvesIds = (state, id) => getBookshelves(state).ids;
+export const getBookshelvesData = (state, id) => getBookshelves(state).data;
 
 export const getBookshelvesList = (state) => {
     const bookshelves = getBookshelves(state);
@@ -13,3 +14,5 @@ export const getBookshelvesList = (state) => {
         return acc;
     }, []);
 };
+
+export const getBookshelfById = (state, id) => getBookshelves(state).data[id];

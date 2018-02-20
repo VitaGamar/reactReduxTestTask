@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Link, withRouter} from 'react-router-dom';
 import {connect} from "react-redux";
-import {getBookshelvesById} from "../../modules/selectors/bookshelves";
+import {getBookshelfById} from "../../modules/selectors/bookshelves";
 import { FormGroup, Form, ControlLabel, FormControl, ButtonToolbar } from 'react-bootstrap'
 import {BOOK_SHELVES} from "../../constants/entityNames";
 import {EDIT} from '../../constants/routes';
@@ -32,7 +32,7 @@ export class BookshelfViewForm extends Component {
     }
 }
 
-BookshelfViewForm.PropTypes = {
+BookshelfViewForm.propTypes = {
     bookshelf: PropTypes.object.isRequired
 };
 
@@ -42,7 +42,7 @@ BookshelfViewForm.defaultProps = {
 
 function mapStateToProps(state, ownProps) {
     return {
-        bookshelf: getBookshelvesById(state, ownProps.match.params.id)
+        bookshelf: getBookshelfById(state, ownProps.match.params.id)
     };
 }
 
